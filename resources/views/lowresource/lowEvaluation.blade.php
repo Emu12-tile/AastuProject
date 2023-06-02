@@ -489,7 +489,7 @@
                                         <label for="performance">ለትምህርት ዝግጅት የሚሰጥ ነጥብ</label>
                                         <input type="number" value="{{ old('performance') }}"
                                             class="form-control @error('performance') is-invalid @enderror" id="performance"
-                                            placeholder="ለትምህርት ዝግጅት" name="performance" min="1" max="40">
+                                            placeholder="ለትምህርት ዝግጅት" name="performance" >
                                         @error('performance')
                                             <span class=" error invalid-feedback">
                                                 <strong>{{ $message }}</strong>
@@ -500,7 +500,7 @@
                                         <label for="experience">ለስራ ልምድ አገልግሎት የሚሰጥ ነጥብ</label>
                                         <input type="float" value="{{ old('experience') }}"
                                             class="form-control @error('experience') is-invalid @enderror" id="experience"
-                                            placeholder="ለስራ ልምድ" name="experience" min="1" max="30">
+                                            placeholder="ለስራ ልምድ" name="experience">
                                         @error('experience')
                                             <span class=" error invalid-feedback">
                                                 <strong>{{ $message }}</strong>
@@ -511,7 +511,7 @@
                                         <label for="resultbased">ለውጤት ተኮር ምዘና </label>
                                         <input type="float" value="{{ round($form->resultOfrecentPerform * 0.3, 2) }}"
                                             class="form-control @error('resultbased') is-invalid @enderror" id="resultbased"
-                                            placeholder="ለውጤት ተኮር ምዘና " name="resultbased" min="1" max="30">
+                                            placeholder="ለውጤት ተኮር ምዘና " name="resultbased" >
                                         @error('resultbased')
                                             <span class=" error invalid-feedback">
                                                 <strong>{{ $message }}</strong>
