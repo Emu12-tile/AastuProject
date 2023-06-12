@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\choice2;
 use App\Models\Form;
+use App\Models\choice2;
 use App\Models\Secondhr;
 use App\Models\Education;
 use App\Models\experience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class SecondhrController extends Controller
 {
@@ -263,11 +265,22 @@ class SecondhrController extends Controller
 
         $hr->status_hr = 1;
         $hr->submit = auth()->user()->name;
-
+       
         $hr->update();
+        
+        $pdf = Pdf::loadView('pdf.result2', compact('hr'));
+    
+        // mail    
+        Mail::send('emails.result2',$hr->toArray(),  function ($message) use ($pdf,$hr) {
+            $message->from(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
+            $message->sender(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
+            $message->to($hr->form->full_name,$hr->form->full_name);
+            $message->subject('የተወዳዳሪዎች 2ኛ ምርጫ ከቡድን መሪ በታች አጠቃላይ ውጤት');
+            $message->attachData($pdf->output(),$hr->form->full_name .".pdf");
+        });
 
 
-        return redirect()->back()->with('status', ' updated successfully');
+        return redirect()->back()->with('status', 'submitted and email sent successfully');
     }
     public function destroy($id)
     {
