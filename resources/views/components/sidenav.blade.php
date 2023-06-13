@@ -124,7 +124,7 @@
                             <a class="nav-link" href="{{ route('form_list') }}">
                                 <i class="ion ion-ios-list-box"></i>
                                 <span class="nav-link-text">
-                                    የአመልካቾች ዝርዝር with dereja
+                                    የአመልካቾች ውጤት ዝርዝር
                                 </span>
                             </a>
                         </li>
