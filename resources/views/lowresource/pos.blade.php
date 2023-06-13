@@ -14,7 +14,7 @@
 
 
             </div>
-            <h5 class="hk-sec-title">የአመልካቾች ዝርዝር</h5>
+            <h5 class="hk-sec-title"> ከቡድን መሪ በታች ተወዳዳሪዎች 1ኛ ምርጫ አጠቃላይ ውጤት(100%) </h5>
 
 
             <div class="row" id="search_list">
@@ -80,5 +80,4 @@
 
 
     </div>
-    
 @endsection
