@@ -289,16 +289,16 @@ class ResourceController extends Controller
 
         $hr->update();
         
-        $pdf = Pdf::loadView('pdf.result', compact('hr'));
+//         $pdf = Pdf::loadView('pdf.result', compact('hr'));
     
         // mail    
-        Mail::send('emails.result',$hr->toArray(),  function ($message) use ($pdf,$hr) {
-            $message->from(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
-            $message->sender(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
-            $message->to($hr->form->full_name,$hr->form->full_name);
-            $message->subject('የተወዳዳሪዎች 1ኛ ምርጫ ከቡድን መሪ በታች አጠቃላይ ውጤት');
-            $message->attachData($pdf->output(),$hr->form->full_name .".pdf");
-        });
+//         Mail::send('emails.result',$hr->toArray(),  function ($message) use ($pdf,$hr) {
+//             $message->from(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
+//             $message->sender(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
+//             $message->to($hr->form->full_name,$hr->form->full_name);
+//             $message->subject('የተወዳዳሪዎች 1ኛ ምርጫ ከቡድን መሪ በታች አጠቃላይ ውጤት');
+//             $message->attachData($pdf->output(),$hr->form->full_name .".pdf");
+//         });
 
         return redirect()->back()->with('status', 'submitted and email sent successfully');
     }
