@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Prestwo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HRController;
@@ -9,21 +10,21 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\Choice2Controller;
 use App\Http\Controllers\JobCat2Controller;
+use App\Http\Controllers\PrestwoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\SecondhrController;
 use App\Http\Controllers\MultiformController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\LowPositionController;
+use App\Http\Controllers\FormPositionController;
 use App\Http\Controllers\PresidentialController;
 use App\Http\Controllers\EducationTypeController;
 use App\Http\Controllers\EducationLevelController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PrestwoController;
-use App\Http\Controllers\SecondhrController;
-use App\Models\Prestwo;
 
 /*
 |--------------------------------------------------------------------------
@@ -183,6 +184,9 @@ Route::middleware([
 ])->group(
     function () {
         Route::resource('/list', AdminController::class);
+        //new
+        Route::get('form_list', [FormPositionController::class, 'index'])->name('form_list');
+
         Route::get('get_ajax_data', [AdminController::class, 'get_ajax_data']);
 
         Route::get('/pos2', [FormController::class, 'pos2'])->name('pos2');
