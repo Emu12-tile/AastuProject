@@ -10,8 +10,11 @@ use App\Models\Position;
 use App\Models\Education;
 use App\Models\experience;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Mail;
 
 class ResourceController extends Controller
 {
@@ -278,16 +281,26 @@ class ResourceController extends Controller
     {
         $hr = HR::find($id);
 
+        // create pdf and send email
+
 
         $hr->status_hr = 1;
         $hr->submit = auth()->user()->name;
 
         $hr->update();
+        
+        $pdf = Pdf::loadView('pdf.result', compact('hr'));
+    
+        // mail    
+        Mail::send('emails.result',$hr->toArray(),  function ($message) use ($pdf,$hr) {
+            $message->from(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
+            $message->sender(env('MAIL_FROM_ADDRESS'), 'የአ.አ.ሳ.ቴ.ዩ የመዋቅር ድልድል ኮሚቴ');
+            $message->to($hr->form->full_name,$hr->form->full_name);
+            $message->subject('የተወዳዳሪዎች 1ኛ ምርጫ ከቡድን መሪ በታች አጠቃላይ ውጤት');
+            $message->attachData($pdf->output(),$hr->form->full_name .".pdf");
+        });
 
-
-
-
-        return redirect()->back()->with('status', 'stock updated successfully');
+        return redirect()->back()->with('status', 'submitted and email sent successfully');
     }
 
     public function pdf(Request $request)
