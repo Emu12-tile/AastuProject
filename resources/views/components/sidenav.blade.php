@@ -118,6 +118,16 @@
                                 </span>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="{{ route('form_list') }}">
+                                <i class="ion ion-ios-list-box"></i>
+                                <span class="nav-link-text">
+                                    የአመልካቾች ዝርዝር with dereja
+                                </span>
+                            </a>
+                        </li>
                         <li class="nav-item">
 
                             <a class="nav-link" href="{{ route('posall') }}">
