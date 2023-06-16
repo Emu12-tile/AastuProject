@@ -7,7 +7,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-    @role('hr')
+    {{-- @role('hr')
         <div class="container">
 
             <section class="hk-sec-wrapper mt-100">
@@ -89,8 +89,8 @@
 
 
         </div>
-    @endrole
-    @role('president')
+    @endrole --}}
+    {{-- @role('president') --}}
         <div class="container">
 
             <section class="hk-sec-wrapper mt-100">
@@ -255,5 +255,5 @@
 
 
         </div>
-    @endrole
+    {{-- @endrole --}}
 @endsection
