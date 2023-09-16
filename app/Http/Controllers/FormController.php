@@ -201,16 +201,7 @@ class FormController extends Controller
             'lastName' => 'required',
             'sex' => 'required',
             'email' => ['required', 'string', 'email', 'max:255',  'regex:/(.*)@aastu.edu.et/i'],
-            // 'email' => [
-            //     'required', 'string', 'email', 'max:255',  'regex:/(.*)@aastu.edu.et/i', 'unique:' . Form::join('positions', 'positions.id', '=', 'forms.position_id')
-            //         ->join('categories', 'categories.id', '=', 'positions.category_id')
-
-            //         // Rule::unique('forms')
-            //         ->where(function ($query) {
-            //             return $query->where('categories.id', 'positions.category_id');
-            //         })
-
-            // ],
+           
             'phone' => 'required|numeric|digits:10',
             'fee' => 'required',
             'position_id' => 'required',
